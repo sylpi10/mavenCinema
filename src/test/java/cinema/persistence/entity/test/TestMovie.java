@@ -9,12 +9,14 @@ import javax.persistence.EntityManager;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import cinema.persistence.entity.Movie;
 import cinema.persistence.repository.MovieRepository;
 
 @DataJpaTest
+@AutoConfigureTestDatabase(replace = Replace.NONE)
 class TestMovie {
 
 	@Autowired
@@ -120,5 +122,6 @@ class TestMovie {
 		//when
 		var dataRead = repoMovie.findByTitleAndYear(titleLion, 1994);
 		System.out.println(dataRead);
+		
 	}
 }
