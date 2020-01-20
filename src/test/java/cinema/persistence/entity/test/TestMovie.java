@@ -73,21 +73,52 @@ class TestMovie {
 	}
 	
 	@Test
-	void testFindByTitle() {
+	void testFindBy() {
 		//given
 		String titleLion = "The lion king";
+		int year1 = 1994;
+		int year2 = 2018;
 		List<Movie> data = List.of(
 				new Movie("Joker", 2019),	
 				new Movie(titleLion, 1994, 136),	
-				new Movie(titleLion, 2019),	
-				new Movie("Apocalypse now", 1979),	
-				new Movie("Taxi driver", 1976),	
-				new Movie("Raging bull", 1980),	
-				new Movie("Interstellar", 2014)
+				new Movie(titleLion, year2),	
+				new Movie("Apocalypse now", year1)	
 				);
 		data.forEach(entityManager::persist);
 		//when
+		// by title
 		var dataRead = repoMovie.findByTitle(titleLion);
+		System.out.println("by title => " + dataRead);
+		
+		// greater than
+		var dataYearGreater = repoMovie.findByYearGreaterThan(year1);
+		System.out.println("year greater => " + dataYearGreater);
+
+		// between
+		var dataYearBetween = repoMovie.findByYearBetween(year1, year2);
+		System.out.println("year between => " + dataYearBetween);
+		assertAll(
+        ()-> assertEquals(3, dataYearBetween.size()),
+        ()-> assertTrue(dataYearBetween.stream()
+			.mapToInt(Movie::getYear)
+			.allMatch(y -> (y >= year1) && (y <= year2))));
+		
+	}
+
+	@Test
+	void testFindByTitleAndYear() {
+		//given
+		int year1 = 1994;
+		String titleLion = "The lion king";
+		List<Movie> data = List.of(
+				new Movie("Joker", 2019),	
+				new Movie(titleLion, year1, 136),	
+				new Movie(titleLion, 2019),	
+				new Movie("Apocalypse now", 1979)	
+				);
+		data.forEach(entityManager::persist);
+		//when
+		var dataRead = repoMovie.findByTitleAndYear(titleLion, 1994);
 		System.out.println(dataRead);
 	}
 }
