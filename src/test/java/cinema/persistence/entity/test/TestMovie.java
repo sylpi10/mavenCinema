@@ -2,6 +2,7 @@ package cinema.persistence.entity.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -11,8 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.annotation.Rollback;
 
 import cinema.persistence.entity.Movie;
+import cinema.persistence.entity.Person;
 import cinema.persistence.repository.MovieRepository;
 
 @DataJpaTest
@@ -124,4 +127,28 @@ class TestMovie {
 		System.out.println(dataRead);
 		
 	}
+	
+	@Test
+	void testSaveDirector() {
+		//given
+		Movie apo = new Movie("Apocalypse now", 1979);
+		Person francis =  new Person("Francis Ford Coppola", LocalDate.of(1970, 12, 20));
+		
+		entityManager.persist(francis);
+		//when
+		repoMovie.save(apo);
+		//then
+		System.out.println(apo);
+		System.out.println(francis);
+	}
 }
+
+
+
+
+
+
+
+
+
+

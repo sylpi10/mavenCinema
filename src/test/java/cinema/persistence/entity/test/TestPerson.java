@@ -43,7 +43,7 @@ class TestPerson {
 		persons.forEach(entityManager::persist);
 		//when
 		var dataRead = repoPerson.findByName("Clint Eastwood");
-		System.out.println("by title => " + dataRead);
+		System.out.println("find by name => " + dataRead);
 		
 	}
 

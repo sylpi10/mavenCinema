@@ -27,8 +27,13 @@ public class Person {
 	public Person(String name, LocalDate birthDate) {
 		this(null, name, birthDate);
 	}
+	
 	public Person(String name) {
 		this(null, name, null);
+	}
+	
+	public Person() {
+		
 	}
 
 	@Id
@@ -61,8 +66,8 @@ public class Person {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder(idPerson);
-		return builder.append(name).append(" (").append(birthDate).append(").").toString();
+		StringBuilder builder = new StringBuilder(name);
+		return builder.append(" (").append(birthDate).append("). #").append(idPerson).toString();
 	}
 	
 	
