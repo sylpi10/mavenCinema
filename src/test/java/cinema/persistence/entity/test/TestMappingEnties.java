@@ -102,4 +102,18 @@ class TestMappingEnties {
 		repoMovie.flush();
 	}
 	
+	@Rollback(false)
+	@Test
+	void findMachin() {
+		var data1 = repoMovie.findByDirectorNameEndingWithIgnoreCase("eastwood");
+		
+		System.out.println(data1);
+		
+	}
 }
+
+
+
+
+
+
