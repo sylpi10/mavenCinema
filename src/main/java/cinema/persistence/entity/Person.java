@@ -24,6 +24,9 @@ public class Person {
 		this.birthDate = birthDate;
 	}
 	
+	public Person(String name, LocalDate birthDate) {
+		this(null, name, birthDate);
+	}
 	public Person(String name) {
 		this(null, name, null);
 	}
@@ -58,7 +61,8 @@ public class Person {
 
 	@Override
 	public String toString() {
-		return "Person : " +  name + " (" + birthDate + ")";
+		StringBuilder builder = new StringBuilder(idPerson);
+		return builder.append(name).append(" (").append(birthDate).append(").").toString();
 	}
 	
 	

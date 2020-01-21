@@ -36,10 +36,24 @@
 		<artifactId>spring-boot-starter-test</artifactId>
 		<scope>test</scope>
 	</dependency>
+	
+	<!--  DRIVERS JDBC -->
+	<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+	<dependency>
+	    <groupId>mysql</groupId>
+	    <artifactId>mysql-connector-java</artifactId>
+	    <version>8.0.18</version>
+	</dependency>
+	
 	<dependency>
 		<groupId>org.postgresql</groupId>
 		<artifactId>postgresql</artifactId>
 		<version>42.2.9</version>
+	</dependency>
+		<dependency>
+        <groupId>com.h2database</groupId>
+        <artifactId>h2</artifactId>
+        <scope>test</scope>
 	</dependency>
 	
 	<dependency>
@@ -62,11 +76,7 @@
 	    <artifactId>hibernate-core</artifactId>
 	    <version>5.4.10.Final</version>
 	</dependency>
-	<dependency>
-        <groupId>com.h2database</groupId>
-        <artifactId>h2</artifactId>
-        <scope>test</scope>
-	</dependency>
+
  </dependencies>
  <build>
  	<plugins>
