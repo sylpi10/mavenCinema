@@ -93,7 +93,7 @@ public class Movie {
 		this.duration = duration;
 	}
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "id_director", nullable = true)
 	public Person getDirector() {
 		return director;
