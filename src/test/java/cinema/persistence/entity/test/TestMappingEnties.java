@@ -41,7 +41,7 @@ class TestMappingEnties {
 	Person joaquin = new Person("Joaquin Phoenix", LocalDate.of(1974, 10, 11));
 	Person gerard  = new Person("Gérard Darmon", LocalDate.of(1948, 02, 04));
 	Person todd    = new Person("Todd Phillips", LocalDate.of(1972, 12, 07));
-	Person clint   = new Person("Clint Eastwood", LocalDate.of(1944, 12, 14));
+	Person clint   = new Person("Clint Eastwood", LocalDate.of(1940, 12, 14));
 	Person marty   = new Person("Marty Scorsese", LocalDate.of(1970, 12, 24));
 	Person francis = new Person("Francis F Coppola", LocalDate.of(1940, 03, 17));
 	
@@ -104,12 +104,18 @@ class TestMappingEnties {
 	
 	@Rollback(false)
 	@Test
-	void findMachin() {
+	void findMovieByDirector() {
 		var data1 = repoMovie.findByDirectorNameEndingWithIgnoreCase("eastwood");
-		
 		System.out.println(data1);
-		
 	}
+
+	@Test
+	void findByBirth() {
+		var data1 = repoPerson.findByBirthDateYear(1940);
+		System.out.println(data1);
+	}
+	
+	
 }
 
 
