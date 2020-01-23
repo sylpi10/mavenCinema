@@ -1,5 +1,6 @@
 package cinema.controller;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -36,7 +37,7 @@ public class MovieController {
 	 */
 	@GetMapping
 	@ResponseBody
-	public List<Movie> movies () {
+	public List<Movie> allMovies () {
 		return movieRepository.findAll();
 	}
 	
@@ -58,12 +59,37 @@ public class MovieController {
 		return movieRepository.findByYearBetween(year1, year2);
 	}
 	
+	@GetMapping("/byDirector")
+	@ResponseBody
+	public Set<Movie>findByDirector(@RequestParam ("d") String directorName) {
+		return movieRepository.findByDirectorName(directorName );
+	}
+
+	@GetMapping("/byDirectorId")
+	@ResponseBody
+	public Set<Movie>findByDirector(@RequestParam ("d") int idDirector) {
+		var optDirector = personRepository.findById(idDirector);
+		return optDirector.map(d -> movieRepository.findByDirector(d)).orElseGet(()-> Collections.emptySet());
+	}
+
+	@GetMapping("/byActor")
+	@ResponseBody
+	public Set<Movie>findByActor(@RequestParam ("a") int idActor) {
+		return movieRepository.findByActorsIdPerson(idActor );
+	}
+	
 	@GetMapping("/byPerson")
 	@ResponseBody
 	public Set<Movie>findByActorOrDirector(@RequestParam("a") String actorName, @RequestParam("d") String directorName) {
 		return movieRepository.findByActorsNameOrDirectorName( actorName,  directorName );
 	}
 	
+//	@GetMapping("/byActor")
+//	@ResponseBody
+//	public Set<Movie>findByActor(@RequestParam("a") int idActor) {
+//		return movieRepository.findByIdPerson(idActor);
+//	}
+//	
 	
 	
 	/*
