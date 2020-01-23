@@ -44,8 +44,10 @@ class TestMappingEnties {
 	Person clint   = new Person("Clint Eastwood", LocalDate.of(1940, 12, 14));
 	Person marty   = new Person("Marty Scorsese", LocalDate.of(1970, 12, 24));
 	Person francis = new Person("Francis F Coppola", LocalDate.of(1940, 03, 17));
+	Person gene    = new Person("Gene Hackmann", LocalDate.of(1940, 03, 17));
+	Person morgan  = new Person("Morgan Freeman", LocalDate.of(1940, 03, 17));
 	
-	List<Person> persons = List.of(joaquin, gerard, todd, clint, marty, francis);
+	List<Person> persons = List.of(joaquin, gerard, todd, clint, marty, francis, gene, morgan);
 	
 	persons.forEach(repoPerson::save);
 
@@ -115,8 +117,40 @@ class TestMappingEnties {
 		System.out.println(data1);
 	}
 	
+	@Rollback(false)
+	@Test
+	void initialActorsListToMovie() {
+		var unforgiven = repoMovie.findByTitle("Unforgiven").stream().findFirst().get();
+		var clint = repoPerson.findByNameContaining("Eastwood").stream().findFirst().get();
+		var gene = repoPerson.findByNameContaining("Hackmann").stream().findFirst().get();
+		unforgiven.setActors(List.of(clint, gene));
+		repoMovie.flush();
+	}
 	
+	@Rollback(false)
+	@Test
+	void addActorsToMovie() {
+		var unforgiven = repoMovie.findByTitle("Unforgiven").stream().findFirst().get();
+		var clint = repoPerson.findByNameContaining("Eastwood").stream().findFirst().get();
+		var gene = repoPerson.findByNameContaining("Hackmann").stream().findFirst().get();
+		unforgiven.setActors(List.of(clint, gene));
+		repoMovie.flush();
+	}
+	
+	@Test
+	void testLazyActors() {
+		// read a movie : select the movie + it's director
+		var unforgiven = repoMovie.findByTitle("Unforgiven").stream().findFirst().get();
+		var morgan= repoPerson.findByNameContaining("Freeman").stream().findFirst().get();
+		unforgiven.getActors().add(morgan);		
+		repoMovie.flush();
+	}
 }
+
+
+
+
+
 
 
 

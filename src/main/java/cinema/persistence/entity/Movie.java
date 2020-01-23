@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -109,7 +110,11 @@ public class Movie {
 		this.director = director;
 	}
 	
-	@ManyToMany
+	@ManyToMany //(fetch = FetchType.EAGER)
+	 @JoinTable(name="act",
+     joinColumns= @JoinColumn(name="id_movie"),
+     inverseJoinColumns=@JoinColumn(name="id_actor")
+     )
 	public List<Person> getActors() {
 		return actors;
 	}

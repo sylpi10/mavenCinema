@@ -17,4 +17,5 @@ public interface MovieRepository extends JpaRepository<Movie, Integer> {
 	Set<Movie> findByDirectorNameEndingWith(String name);
 	Set<Movie> findByDirectorNameEndingWithIgnoreCase(String name);
 	Set<Movie> findByTitleIgnoreCaseContaining(String name);
+	Set<Movie> findByActorsNameOrDirectorName(String actorName, String directorName );
 }

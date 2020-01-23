@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import cinema.persistence.entity.Movie;
+import cinema.persistence.entity.Person;
 import cinema.persistence.repository.MovieRepository;
+import cinema.persistence.repository.PersonRepository;
 
 @RestController
 @RequestMapping("/api/movies")
@@ -25,6 +27,9 @@ public class MovieController {
 		
 	@Autowired
 	MovieRepository movieRepository;
+
+	@Autowired
+	PersonRepository personRepository;
 	
 	/*
 	 * GET --reading movies
@@ -52,6 +57,13 @@ public class MovieController {
 	public Set<Movie>findByYearBetween(@RequestParam("y1") int year1, @RequestParam("y2") int year2 ) {
 		return movieRepository.findByYearBetween(year1, year2);
 	}
+	
+	@GetMapping("/byPerson")
+	@ResponseBody
+	public Set<Movie>findByActorOrDirector(@RequestParam("a") String actorName, @RequestParam("d") String directorName) {
+		return movieRepository.findByActorsNameOrDirectorName( actorName,  directorName );
+	}
+	
 	
 	
 	/*
@@ -83,6 +95,34 @@ public class MovieController {
 		//
 		return optMovie;
 	}
+	
+
+	@PutMapping("/addActor")
+	@ResponseBody
+	public Optional<Movie> addActor(@RequestParam("a") int idActor, @RequestParam("m") int idMovie) {
+		//TODO: somewhere else
+		var optMovie = movieRepository.findById(idMovie);
+		var optActor= personRepository.findById(idActor);
+		if (optMovie.isPresent() && optActor.isPresent()) {
+			optMovie.get().getActors().add(optActor.get());
+			movieRepository.flush();
+		}
+		return optMovie;
+	}
+	
+	@PutMapping("/setDirector")
+	@ResponseBody
+	public Optional<Movie> setDirector(@RequestParam("a") int idDirector, @RequestParam("m") int idMovie) {
+		//TODO: somewhere else
+		var optMovie = movieRepository.findById(idMovie);
+		var optDirector= personRepository.findById(idDirector);
+		if (optMovie.isPresent() && optDirector.isPresent()) {
+			optMovie.get().setDirector(optDirector.get());
+			movieRepository.flush();
+		}
+		return optMovie;
+	}
+	
 	
 	/**
 	 * DELETE

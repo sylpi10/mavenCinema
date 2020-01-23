@@ -70,5 +70,4 @@ public class Person {
 		return builder.append(" (").append(birthDate).append("). #").append(idPerson).toString();
 	}
 	
-	
 }
