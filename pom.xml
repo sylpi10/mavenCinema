@@ -20,6 +20,7 @@
   <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
  <dependencies>
  	<dependency>
+	 <!-- spring dependencies -->
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter</artifactId>
 	</dependency>
