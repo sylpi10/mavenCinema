@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import cinema.persistence.entity.Movie;
-import cinema.service.impl.IMovieService;
+import cinema.service.IMovieService;
 
 @RestController
 @RequestMapping("/api/movies")

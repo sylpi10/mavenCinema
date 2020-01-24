@@ -1,4 +1,4 @@
-package cinema.service.impl;
+package cinema.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,7 +9,7 @@ import cinema.persistence.entity.Movie;
 
 public interface IMovieService {
 	
-	public List<Movie> getAllMovies ();
+	public List<Movie> getAllMovies ();	
 	public Optional<Movie> getMovieById(int idMovie); 
 	public Set<Movie> getMovieByPartialTitle(String partialTitle);
 	public Set<Movie> getByYearBetween(int year1,  int year2 );

@@ -1,4 +1,4 @@
-package cinema.service;
+package cinema.service.impl;
 
 import java.util.Collections;
 import java.util.List;
@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import cinema.persistence.entity.Movie;
 import cinema.persistence.repository.MovieRepository;
 import cinema.persistence.repository.PersonRepository;
-import cinema.service.impl.IMovieService;
+import cinema.service.IMovieService;
 
 @Service
 @Transactional
