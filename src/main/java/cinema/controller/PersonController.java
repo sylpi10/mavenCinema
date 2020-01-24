@@ -1,6 +1,7 @@
 package cinema.controller;
 
 import java.util.List;
+<<<<<<< HEAD
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,3 +40,13 @@ public class PersonController {
 
 
 
+=======
+
+import org.springframework.web.bind.annotation.GetMapping;
+
+import cinema.persistence.entity.Person;
+
+public class PersonController {
+	
+}
+>>>>>>> 0f40c87b4b1b9753286deaf516b164fbdcf465d3
