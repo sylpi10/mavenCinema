@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import cinema.persistence.entity.Movie;
 import cinema.persistence.entity.Person;
 import cinema.service.IPersonService;
 
@@ -44,7 +43,6 @@ public class PersonController {
 		return PersonService.getPersonsByNameEndingWithIgnoreCase(name);
 	}
 	
-<<<<<<< HEAD
 	@GetMapping("/byNameContaining")
 	@ResponseBody
 	public Set<Person> PersonByNameContaining(@RequestParam("n") String partialName) {
@@ -76,20 +74,5 @@ public class PersonController {
 		return PersonService.deletePerson(idPerson);
 	}
 	
-=======
-	@GetMapping("/byName")
-	@ResponseBody
-	public Set<Person>movieByPartialTitle(@RequestParam("n") String partialName) {
-		return personService.getByNameIgnoreCaseContaining(partialName);
-	}
-	
-	@GetMapping("/byBirthdate")
-	@ResponseBody
-	public Set<Person>getByBirthDateYear(@RequestParam("y") int year) {
-		return personService.getByBirthDateYear(year);
-	}
->>>>>>> 3e4390e761cf8af8b2642aeb7d8044bfef3e7015
 }
-
-
 

@@ -5,6 +5,7 @@ import java.util.Set;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import cinema.persistence.entity.Movie;
 import cinema.persistence.entity.Person;
 
 public interface PersonRepository extends JpaRepository<Person, Integer>{

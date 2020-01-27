@@ -21,11 +21,7 @@ public class PersonService implements IPersonService {
 	
 	// Methodes get
 	@Override
-<<<<<<< HEAD
 	public List<Person> getAllPersons() {
-=======
-	public List<Person> getAllPerson() {
->>>>>>> 3e4390e761cf8af8b2642aeb7d8044bfef3e7015
 		return personRepository.findAll();
 	}
 	
@@ -33,7 +29,6 @@ public class PersonService implements IPersonService {
 	public Optional<Person> getPersonById(int idPerson) {
 		return personRepository.findById(idPerson);
 	}
-<<<<<<< HEAD
 	
 	@Override
 	public Set<Person> getPersonsByNameEndingWithIgnoreCase(String name) {
@@ -79,16 +74,3 @@ public class PersonService implements IPersonService {
 	}
 	
 }
-=======
-
-	@Override
-	public Set<Person> getByNameIgnoreCaseContaining(String partialName) {
-		return null;
-	}
-
-	@Override
-	public Set<Person> getByBirthDateYear(int year) {
-		return null;
-	}
-}
->>>>>>> 3e4390e761cf8af8b2642aeb7d8044bfef3e7015
